@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
-class Home extends BaseController
+use App\Models\Users_model;
+
+class Users extends BaseController
 {
     public function index()
     {
@@ -11,7 +13,10 @@ class Home extends BaseController
 	
 	public function listing()
     {
-		echo 'eddddssss';exit;
+		$users_model = new Users_model();
+		//$users_model->getAllUser();
+		
+		echo 'ed';exit;
         
     }
 }
