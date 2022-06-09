@@ -2,12 +2,21 @@
 
 namespace App\Models;
 
-class Images_model extends Models {
+use CodeIgniter\Model;
 
-    protected $table = null;
+class Images_model extends Model {
 
-    function __construct() {
-        $this->table = 'images';
-        parent::__construct($this->table);
-    }
+    protected $table = 'images';
+
+	
+	public function getAllUserImages() {
+		
+		
+		$builder = $this->db->table('images');
+        $builder->select('images.*');
+		
+        $builder->join('user', 'user.id = images.id_user');
+		
+        return $builder->get()->getResult();
+	}
 }

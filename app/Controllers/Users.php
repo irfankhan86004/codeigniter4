@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Users_model;
+use App\Models\Images_model;
 
 class Users extends BaseController
 {
@@ -13,10 +14,23 @@ class Users extends BaseController
 	
 	public function listing()
     {
-		$users_model = new Users_model();
-		//$users_model->getAllUser();
+		$users_model = new Users_model;
 		
-		echo 'ed';exit;
+		$data = $users_model->getAllUser();
+		
+		echo '<pre>';
+		print_R($data);exit;
+        
+    }
+	
+	public function user_images()
+    {
+		$images_model = new Images_model;
+		
+		$data = $images_model->getAllUserImages();
+		
+		echo '<pre>';
+		print_R($data);exit;
         
     }
 }
