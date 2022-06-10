@@ -38,7 +38,8 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 
 $routes->get('users', 'Users::listing');
-$routes->get('users-all', 'Users::listing');
+//$routes->get('users-all', 'Users::listing');
+$routes->get('user-images', 'Users::user_images');
 
 /*
  * --------------------------------------------------------------------
