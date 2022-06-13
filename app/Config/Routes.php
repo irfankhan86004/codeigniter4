@@ -37,9 +37,27 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-$routes->get('users', 'Users::listing');
+
+$routes->get('/users/list', 'Users::listing');
+$routes->get('user_add','Users::create');
+$routes->post('user-store','Users::store');
+$routes->get('list/delete/(:num)','Users::delete/$1');
+$routes->get('list/edit/(:num)','Users::edit/$1');
+$routes->post('users/update','Users::update');
+
+
+
 //$routes->get('users-all', 'Users::listing');
-$routes->get('user-images', 'Users::user_images');
+
+
+$routes->get('user-images/list_image', 'Users::user_images');
+$routes->get('image_add','Users::show');
+$routes->post('image_save','Users::save');
+$routes->get('list_image/remove/(:num)', 'Users::remove/$1');
+$routes->get('list_image/load/(:num)', 'Users::load/$1');
+$routes->post('users/update_images','Users::updateImage');
+
+
 
 /*
  * --------------------------------------------------------------------

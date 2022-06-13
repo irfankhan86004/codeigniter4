@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class Images_model extends Model {
 
     protected $table = 'images';
+	protected $allowedFields = ['id_user','name'];
 
 	
 	public function getAllUserImages() {
