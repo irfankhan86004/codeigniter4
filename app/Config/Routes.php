@@ -41,9 +41,17 @@ $routes->get('/', 'Home::index');
 $routes->get('/users/list', 'Users::listing');
 $routes->get('user_add','Users::create');
 $routes->post('user-store','Users::store');
+$routes->post('users/list','Users::listing');////////////////this roouting is for searching
+//$routes->post('user-store','Users::formValidation');
 $routes->get('list/delete/(:num)','Users::delete/$1');
+
 $routes->get('list/edit/(:num)','Users::edit/$1');
+$routes->get('users/search','Users::searchfunction');
 $routes->post('users/update','Users::update');
+
+
+
+
 
 
 

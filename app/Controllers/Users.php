@@ -20,8 +20,8 @@ class Users extends BaseController
 		
 		$data = $users_model->getAllUser();
 
-		// echo '<pre>';
-		// print_R($data);exit;
+		//echo '<pre>';
+		 //print_R($data);exit;
 		return view('list', ['records'=>$data]);
         
     }
@@ -37,7 +37,7 @@ class Users extends BaseController
 		return view('list_image',['records'=>$data]);
         
     }
-		// to insert data
+		
 
 
 
@@ -88,16 +88,21 @@ class Users extends BaseController
 	
 		$users_model = new Users_model;
 		$id = $this->request->getVar('id');
+		$file=$this->request->getFile('img');
+		$imagename=$file->getRandomName();
+		$file->move('image/',$imagename);
+	
 		$data=[
 			'name' => $this->request->getVar('name'),
 		 	'email' => $this->request->getVar('email'),
 		 	'status' => $this->request->getVar('status'),
 		 	'password' => $this->request->getVar('password'),
-		
+			'image'=>$imagename,
 		 ];
 		 //print_R($data);exit;
 		 
 		 $return =  $users_model->where('id', $id)->set($data)->update();
+		 
 		 if($return) {
 	 	 return redirect()->to( base_url('users/list') );
 	 	}
@@ -134,11 +139,17 @@ public function create()
 public function store()
 {
 	$users_model = new Users_model;
+	$file= $this->request->getFile('img');
+	$imageName=$file->getRandomName();
+	$file->move('image/',$imageName);
+
 	$data=[
 		'name' => $this->request->getVar('name'),
 		 'email' => $this->request->getVar('email'),
 		 'status' => $this->request->getVar('status'),
 		 'password' => $this->request->getVar('password'),
+		 'image'=>$imageName,
+
 	
 	 ];
 	// print_r($data);exit;
@@ -146,6 +157,44 @@ public function store()
 	 return redirect()->to( base_url('users/list') );
 
 }
+// public function formValidation(){
+
+// 	helper(['form','url']);
+
+// 	$data= $this->validate([
+// 		'name'=>'required',
+// 		'email'=>'required',
+// 		'status'=>'required',
+// 		'password'=>'required'
+		
+// 	]);
+	   
+// 	$users_model = new Users_model;
+	
+	
+
+// 	if(!$data){
+// 		return view('create',[
+
+// 			'validation'=>$this->validator
+
+// 		]  );
+// 	} 
+// 	else{
+// 		$users_model->save([
+
+// 	    'name' => $this->request->getVar('name'),
+// 		 'email' => $this->request->getVar('email'),
+// 		 'status' => $this->request->getVar('status'),
+// 		 'password' => $this->request->getVar('password'),
+		 
+// 		]);
+
+// 		return redirect()->to( base_url('users/list') );
+
+// 	}
+
+// }
 
 
 //  // TO INSERT DATA IN IMAGE TABLE
@@ -172,8 +221,4 @@ public function save()
 }
 
 
-
 }
-
-
-
